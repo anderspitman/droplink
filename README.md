@@ -1,3 +1,3 @@
 # Demo
 
-https://droplink.apitman.com/
+https://apitman.com/apps/droplink/
