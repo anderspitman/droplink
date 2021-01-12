@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>droplink</title>
+
+    <style>
+
+      body {
+        font-size: 18px;
+        font-family: Helvetica;
+        display: flex;
+        justify-content: center;
+      }
+
+      label, a {
+        display: block;
+      }
+
+      .content {
+        min-width: 500px;
+      }
+
+      #input {
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 18px;
+        min-height: 200px;
+        white-space: nowrap;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class='content'>
+
+      <label for='input'>Shareable links:</label>
+      <textarea id='input' type='text' placeholder="Dropbox links here"></textarea>
+
+      <label for='output'>Direct links:</label>
+      <div id='output' type='text'></div>
+
+      <script type='module'>
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+
+        input.addEventListener('input', (e) => {
+          const val = e.target.value;
+          console.log(val);
+
+          const lines = val.split('\n');
+          console.log(lines);
+
+          for (const line of lines) {
+            try {
+              const url = new URL(line);
+              const directUrl = 'https://dl.dropboxusercontent.com' + url.pathname;
+              console.log(directUrl);
+              const link = document.createElement('a');
+              link.href = directUrl;
+              link.innerHTML = directUrl;
+              output.appendChild(link);
+            }
+            catch (e) {
+            }
+          }
+        });
+
+      </script>
+
+    </div>
+  </body>
+</html>
